@@ -34,7 +34,7 @@ class StudentController extends Controller
 
     private function studentVaildate($request, $student)
     {
-        $emailRule = $request ? Rule::unique('students', 'email')->ignore($student->id) : 'unique:students,email';
+        $emailRule = $student ? Rule::unique('students', 'email')->ignore($student->id) : 'unique:students,email';
         //dd( $emailRule );
 
         $validated = $request->validate([
@@ -58,8 +58,8 @@ class StudentController extends Controller
     {
         return view('create', [
             'student' => $student,
-            'oldValues' => $student->getAttributes(),
         ]);
+        //'oldValues' => $student->getAttributes(),
     }
 
     public function update(Request $request, Student $student)
