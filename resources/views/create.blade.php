@@ -14,7 +14,7 @@
             @endif
             <div class="mb-4">
                 <label for="name" class="block text-gray-600">Name:</label>
-                <input type="text" id="name" name="name" value="{{ isset($oldValues['name']) ? $oldValues['name'] : (isset($student) ? $student->name : '') }}" class="mt-1 p-2 w-full border rounded-md" required>
+                <input type="text" id="name" name="name" value="{{ isset($student) ? $student->name : old('name') }}" class="mt-1 p-2 w-full border rounded-md" required>
                 @error('name')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -22,7 +22,7 @@
 
             <div class="mb-4">
                 <label for="email" class="block text-gray-600">Email:</label>
-                <input type="email" id="email" name="email" value="{{ isset($oldValues['email']) ? $oldValues['email'] : (isset($student) ? $student->name : '') }}" class="mt-1 p-2 w-full border rounded-md" required>
+                <input type="email" id="email" name="email" value="{{ isset($student) ? $student->email : old('email') }}" class="mt-1 p-2 w-full border rounded-md" required>
                 @error('email')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -30,7 +30,7 @@
 
             <div class="mb-4">
                 <label for="age" class="block text-gray-600">Age:</label>
-                <input type="number" id="age" name="age" value="{{ isset($oldValues['age']) ? $oldValues['age'] : (isset($student) ? $student->name : '') }}" class="mt-1 p-2 w-full border rounded-md" required>
+                <input type="number" id="age" name="age" value="{{ isset($student) ? $student->age : old('age') }}" class="mt-1 p-2 w-full border rounded-md" required>
                 @error('age')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror

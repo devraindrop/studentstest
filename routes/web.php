@@ -14,14 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/students', [StudentController::class, 'index'])->name('students.index');
-Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
-Route::get('/students/{student}', [StudentController::class, 'show'])->name('students.show');
 
-Route::post('/students', [StudentController::class, 'store'])->name('students.store');
-Route::get('/students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
-Route::put('/students/{student}', [StudentController::class, 'update'])->name('students.update');
-Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
+Route::prefix('students')->group(function () {
+    Route::group( ['middleware' => ['auth'] ], function (){
+        Route::get('/create', [StudentController::class, 'create'])->name('students.create');
+        Route::post('/', [StudentController::class, 'store'])->name('students.store');
+        Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
+        Route::put('/{student}', [StudentController::class, 'update'])->name('students.update');
+        Route::delete('/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
+    });
+
+    Route::get('/', [StudentController::class, 'index'])->name('students.index');
+    Route::get('/{student}', [StudentController::class, 'show'])->name('students.show');
+});
 
 
 // Route::get('/', function () {
